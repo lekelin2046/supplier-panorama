@@ -93,6 +93,7 @@
   .zd-head{background:#15803d;}
   .zd-body{padding:12px 14px;}
   .zd-none{padding:12px 14px;color:#64748b;font-size:13px;background:#f0fdf4;border-top:1px solid #bbf7d0;}
+  .zd-not{background:#f8fafc;border-top:1px solid #e2e8f0;color:#64748b;}
   .zd-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;}
   .zd-chip{display:inline-flex;align-items:baseline;gap:4px;padding:4px 10px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:20px;font-size:12px;color:#166534;}
   .zd-chip b{font-size:14px;font-weight:800;color:#15803d;font-variant-numeric:tabular-nums;}
@@ -815,7 +816,10 @@ function payerSection(d){
 }
 /* ---------- 中登登记信息（批量中登查询）：类型汇总 + 可展开明细 ---------- */
 function zdSection(d){
-  if(!d.zd) return "";
+  if(!d.zd){
+    return `<div class="blk zd"><div class="blk-head zd-head">中登登记信息</div>
+      <div class="zd-none zd-not">该客户未纳入中登批量查询名单，中登信息未查询，如需了解请自行查询。</div></div>`;
+  }
   const zd = d.zd;
   const cap = `查询截止 ${zd.q}`;
   if(!zd.total){
